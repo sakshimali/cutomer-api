@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="inputcsvmetadata" format="csv">
+      <types:shape format="weave" example="examples/customer.csv"><![CDATA[%dw 2.0
+
+type inputcsvmetadata = Array<{|  country: String,   address: String,   name: String,   ID: Number,   postal: Number,   Email: String|}> {"isQuotedString": "false",
+"header": "true",
+"headerLineNumber": "0"}
+
+]]></types:shape>
+      <types:properties>
+        <types:property name="headerLineNumber" value="0"/>
+        <types:property name="header" value="true"/>
+        <types:property name="isQuotedString" value="false"/>
+      </types:properties>
+    </types:type>
+    <types:type name="outputcsvmetadata" format="json">
+      <types:shape format="weave" example="examples/ouput.json"><![CDATA[%dw 2.0
+
+type outputcsvmetadata = {|
+  country: String, 
+  address: String, 
+  name: String, 
+  ID: Number {"typeId": "int"}, 
+  postal: Number {"typeId": "int"}, 
+  Email: String
+|} {"example": "{\\\"country\\\":\\\"usa\\\",\\\"address\\\":\\\"rajasthan\\\",\\\"name\\\":\\\"xyz\\\",\\\"ID\\\":787,\\\"postal\\\":9999,\\\"Email\\\":\\\"xyz@gmail.com\\\"}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#c848bae8-ff1d-418c-a355-8abe0febe862">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="inputcsvmetadata"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="outputcsvmetadata[]"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
