@@ -4,7 +4,7 @@ agent any
 stages{
 stage('Build Application'){
 steps{
-bat 'mvn clean install'
+bat 'mvn -B -U -e -V clean -DskipTests package'
 }
 }
 
@@ -20,7 +20,7 @@ bat 'mvn sonar:sonar -Dsonar.sources=src/ -Dsonar.host.url=http://localhost:9000
 
 stage('Deploy Application to Mulesoft Cloudhub'){
 steps{
-bat 'mvn package deploy -DmuleDeploy'
+bat 'mvn deploy -DmuleDeploy'
 }
 }
 
