@@ -31,7 +31,20 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+				
 				<configuration>
+					<cloudHubDeployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+<muleVersion>4.3.0</muleVersion>
+<username>Sakshimali_1997</username>
+<password>Sakshimali@1997</password>
+<applicationName>BuildSonarDeploy</applicationName>
+<environment>Sandbox</environment>
+<businessGroup>MuleSoft</businessGroup>
+<workers>1</workers>
+<workerType>Micro</workerType>
+<objectStoreV2>true</objectStoreV2>
+</cloudHubDeployment>
 					<sharedLibraries>
 						<sharedLibrary>
 							<groupId>mysql</groupId>
